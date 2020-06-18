@@ -1,0 +1,14 @@
+{
+  "editor.rulers": [120],
+  "editor.formatOnSave": true,
+  "javascript.format.enable": true,
+  "javascript.validate.enable": true,
+  "[html,css]": {
+    "editor.formatOnSave": false
+  },
+  "search.exclude": {
+    "**/build/**": true,
+    "**/node_modules/**": true,
+    "**/__generated__/**": true
+  }
+}
