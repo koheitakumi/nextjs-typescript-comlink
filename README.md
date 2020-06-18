@@ -2,6 +2,11 @@
 
 This is a really simple project that shows the usage of Next.js with TypeScript, Web Worker and Comlink.
 
+## Article for more detail.
+
+- English [https://file-translate.com/en/blog/2020-06-18](https://file-translate.com/en/blog/2020-06-18)
+- 日本語 [https://file-translate.com/ja/blog/2020-06-18](https://file-translate.com/ja/blog/2020-06-18)
+
 ## How to use it?
 
 ### Using `create-next-app`
