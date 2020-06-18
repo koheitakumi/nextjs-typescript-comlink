@@ -1,62 +1,104 @@
-# TypeScript Next.js example
+# TypeScript Next.js and Web Worker or Comlink example
 
-This is a really simple project that shows the usage of Next.js with TypeScript.
-
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/vercel/next.js/tree/canary/examples/with-typescript)
+This is a really simple project that shows the usage of Next.js with TypeScript, Web Worker and Comlink.
 
 ## How to use it?
 
 ### Using `create-next-app`
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+Execute [`git clone`](https://git-scm.com/docs/git-clone) to download this project in your computer. And execute install dependencies with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
-```bash
-npx create-next-app --example with-typescript with-typescript-app
-# or
-yarn create next-app --example with-typescript with-typescript-app
-```
+1. Download this project with git
 
-### Download manually
+   ```bash
+   git clone https://github.com/koheitakumi/nextjs-typescript-comlink.git
+   ```
 
-Download the example:
+   or [download zip file](https://github.com/koheitakumi/nextjs-typescript-comlink/archive/master.zip) and unzip it.
 
-```bash
-curl https://codeload.github.com/vercel/next.js/tar.gz/canary | tar -xz --strip=2 next.js-canary/examples/with-typescript
-cd with-typescript
-```
+1. Install dependencies
 
-Install it and run:
+   ```bash
+   cd nextjs-typescript-comlink && npm  install
+   # or
+   cd nextjs-typescript-comlink && yarn install
+   ```
 
-```bash
-npm install
-npm run dev
-# or
-yarn
-yarn dev
-```
+1. Bootstrap this example
 
-Deploy it to the cloud with [Vercel](https://vercel.com/import?filter=next.js&utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
 ## Notes
 
-This example shows how to integrate the TypeScript type system into Next.js. Since TypeScript is supported out of the box with Next.js, all we have to do is to install TypeScript.
+1. TypeScript
 
-```
-npm install --save-dev typescript
-```
+   This example shows how to integrate the TypeScript type system into Next.js. Since TypeScript is supported out of the box with Next.js, all we have to do is to install TypeScript.
 
-To enable TypeScript's features, we install the type declarations for React and Node.
+   ```
+   npm install --save-dev typescript
+   ```
 
-```
-npm install --save-dev @types/react @types/react-dom @types/node
-```
+   To enable TypeScript's features, we install the type declarations for React and Node.
 
-When we run `next dev` the next time, Next.js will start looking for any `.ts` or `.tsx` files in our project and builds it. It even automatically creates a `tsconfig.json` file for our project with the recommended settings.
+   ```
+   npm install --save-dev @types/react @types/react-dom @types/node
+   ```
 
-Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
+   When we run `next dev` the next time, Next.js will start looking for any `.ts` or `.tsx` files in our project and builds it. It even automatically creates a `tsconfig.json` file for our project with the recommended settings.
 
-A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
+   Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
+
+   A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
+
+1. Web Worker
+
+   This example uses [`worker-plugin`](https://www.npmjs.com/package/worker-plugin) according to the Next.js's official example [`with-web-worker`](https://github.com/vercel/next.js/tree/canary/examples/with-web-worker).
+
+   To learn more, please visit each sites. It could be helpful for you!
+
+   I show you some notes to support Web Worker.
+
+   - Add `webworker` library in `tsconfig.json`. It recognize the grammar of Web Worker.
+
+     ```json
+     {
+         "compilerOptions": {
+             :
+             "lib": ["dom", "es2017", "webworker"],
+             :
+         }
+     }
+     ```
+
+   - Add `next.config.js` to recognize `self` object.
+
+     ```js
+     const WorkerPlugin = require("worker-plugin");
+
+     module.exports = {
+       webpack: (
+         config,
+         { buildId, dev, isServer, defaultLoaders, webpack }
+       ) => {
+         if (!isServer) {
+           config.plugins.push(
+             new WorkerPlugin({
+               // use "self" as the global object when receiving hot updates.
+               globalObject: "self",
+             })
+           );
+         }
+         return config;
+       },
+     };
+     ```
+
+1. Comlink
+
+   [Comlink](https://github.com/GoogleChromeLabs/comlink) is very good library to make the Web Worker enjoyable. It would enhance the Web Worker for any applications.
+
+See you!
