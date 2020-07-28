@@ -4,8 +4,8 @@ This is a really simple project that shows the usage of Next.js with TypeScript,
 
 ## Article for more detail.
 
-- English [https://file-translate.com/en/blog/2020-06-18](https://file-translate.com/en/blog/2020-06-18)
-- 日本語 [https://file-translate.com/ja/blog/2020-06-18](https://file-translate.com/ja/blog/2020-06-18)
+- English [https://file-translate.com/en/blog/nextjs-with-web-worker](https://file-translate.com/en/blog/nextjs-with-web-worker)
+- 日本語 [https://file-translate.com/ja/blog/nextjs-with-web-worker](https://file-translate.com/ja/blog/nextjs-with-web-worker)
 
 ## How to use it?
 
